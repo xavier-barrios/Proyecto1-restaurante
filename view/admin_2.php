@@ -61,6 +61,7 @@ function actualizar($salas) {
                 echo "</tr>";
             }
             ?>
+            <form action=""></form>
         </tbody>
     </table>
 </body>
