@@ -6,9 +6,9 @@
     <title>Restaurante</title>
 </head>
 <body>
-    <!-- <?php
-    // require_once './sessionController.php';
-    ?> -->
+     <?php
+     require_once './sessionController.php';
+    ?> 
     <button><a href="./insertar_alumnos.php">Insertar alumnos</a></button>
     <div>
         <h2>Alumnos</h2>
