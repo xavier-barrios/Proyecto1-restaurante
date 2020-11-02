@@ -9,9 +9,8 @@
      <?php
      require_once './sessionController.php';
     ?> 
-    <button><a href="./insertar_alumnos.php">Insertar alumnos</a></button>
     <div>
-        <h2>Alumnos</h2>
+        <h2>Restaurante</h2>
         <!-- <form action="./zona.admin.php" method="POST">
         <label for="nombre">Nombre:</label><br>
         <input type="text" id="nombre_alumno" name="nombre_alumno" placeholder="Nombre"><br><br>
