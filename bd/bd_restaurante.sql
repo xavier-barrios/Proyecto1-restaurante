@@ -1,3 +1,6 @@
+CREATE DATABASE bd_restaurante;
+USE bd_restaurante;
+
 -- phpMyAdmin SQL Dump
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
@@ -6,8 +9,6 @@
 -- Tiempo de generación: 02-11-2020 a las 15:34:01
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.2.33
-create database `bd_restaurante`;
-	use `bd_restaurante`;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
