@@ -1,19 +1,18 @@
 <?php
 require_once '../model/connection.php';
-session_start();
-if (!isset($_SESSION['user'])) {
-    header('Location:login.php');
-}
-// OJO
-// $id_sala = $_GET['id_sala'];
-$id_sala = 2;
-// FIN OJO
+
+$id_sala = $_GET['id'];
 
 $query = "SELECT * FROM mesa WHERE id_sala = $id_sala";
 $sentencia=$pdo->prepare($query);
 $sentencia->execute();
 $salas=$sentencia->fetchAll(PDO::FETCH_ASSOC);
 // print_r($salas);
+
+$query1 = "SELECT nombre FROM sala WHERE id_sala = $id_sala";
+$sentencia1=$pdo->prepare($query1);
+$sentencia1->execute();
+$nombre_sala=$sentencia1->fetch(PDO::FETCH_ASSOC);
 
 
 function estado($salas) {
@@ -42,7 +41,8 @@ function actualizar($salas) {
     <title>Admin2</title>
 </head>
 <body>
-    <h1>Admin2</h1>
+    <!-- CONSULTA PARA SABER NOMBRE SALA -->
+    <h1><?php echo $nombre_sala['nombre']; ?></h1>
     <table>
         <thead>
             <tr>
