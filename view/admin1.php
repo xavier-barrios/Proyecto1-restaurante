@@ -7,7 +7,7 @@
 </head>
 <body>
      <?php
-     require_once './sessionController.php';
+     require_once '../controller/sessionController.php';
     ?> 
     <div>
         <h2>Restaurante</h2>
