@@ -6,15 +6,12 @@ session_start();
 if (isset($_POST['filtro'])){
   $sala = $_POST['sala'];
   $mesa = $_POST['mesa'];
-  $query="SELECT sala.nombre, mesa.numero_mesa, historico.fecha_inicio, historico.fecha_fin FROM historico INNER JOIN mesa ON historico.id_mesa = mesa.id_mesa INNER JOIN sala ON mesa.id_sala = sala.id_sala";
-}else {
   $query="SELECT sala.nombre, mesa.numero_mesa, historico.fecha_inicio, historico.fecha_fin FROM historico INNER JOIN mesa ON historico.id_mesa = mesa.id_mesa INNER JOIN sala ON mesa.id_sala = sala.id_sala WHERE sala.nombre LIKE '%".$sala."%' AND mesa.numero_mesa = $mesa";
+}else {
+  $query="SELECT sala.nombre, mesa.numero_mesa, historico.fecha_inicio, historico.fecha_fin FROM historico INNER JOIN mesa ON historico.id_mesa = mesa.id_mesa INNER JOIN sala ON mesa.id_sala = sala.id_sala";
 }
 
-$sentencia=$pdo->prepare($query);
-$sentencia->execute();
-$lista_historico=$sentencia->fetchAll(PDO::FETCH_ASSOC);
-// print_r($lista_historico);
+
 ?>
 
 <form method="POST">
@@ -25,7 +22,14 @@ $lista_historico=$sentencia->fetchAll(PDO::FETCH_ASSOC);
   <input type="submit" value="Filtrar" name="filtro">
 </form>
 
+<?php
 
+$sentencia=$pdo->prepare($query);
+$sentencia->execute();
+$lista_historico=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+// print_r($lista_historico);
+
+?>
 
 <table>
   <thead>
