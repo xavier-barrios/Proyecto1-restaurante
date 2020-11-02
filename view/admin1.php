@@ -7,7 +7,7 @@
 </head>
 <body>
      <?php
-     require_once '../model/sala.php';
+     require_once '../model/salaDAO.php';
      require_once '../controller/sessionController.php';
     ?>
 
@@ -22,7 +22,7 @@
             </tr>
             </thead>
                 <?php
-                $sala =  new Sala();
+                $sala =  new SalaDAO();
                 echo $sala->mostrarSalasMesas();    
                 ?>
         </table>
