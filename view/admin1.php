@@ -26,7 +26,7 @@
                 <th>Mesas Libres</th>
             </tr>
             </thead>
-            <!-- <?php 
+             <!-- <?php 
             
                 // include './alumnoDao.php';
                 // if (isset($_GET['id_alumno'])) {
@@ -43,7 +43,7 @@
                 //     $filtros_alu=new AlumnoDao;
                 //     $filtros_alu->filtros();
                 // }
-            ?> -->
+            ?>  -->
         </table>
     </div>
 </body>

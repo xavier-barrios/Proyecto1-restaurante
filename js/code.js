@@ -6,11 +6,11 @@ function validacionForm() {
         document.getElementById("email").style.borderColor = "red";
         document.getElementById("psswd").style.borderColor = "red";
     }else if (email == '' ) {
-        document.getElementById("message").innerHTML = 'Inténtelo de nuevo.';
+        document.getElementById("message").innerHTML = 'Te has dejado el email vacio.';
         document.getElementById("email").style.borderColor = "red";
         document.getElementById("psswd").style.borderColor = "white";
     }else if (password == '') {
-        document.getElementById("message").innerHTML = 'Inténtelo de nuevo.';
+        document.getElementById("message").innerHTML = 'Te has dejado la contraseña vacia.';
         document.getElementById("psswd").style.borderColor = "red";
         document.getElementById("email").style.borderColor = "white";
     }else{
