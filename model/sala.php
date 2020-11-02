@@ -6,7 +6,7 @@
         private $mesas;
 
         function __construct(){
-                
+
         }
 
 
@@ -89,5 +89,5 @@
 
                 return $this;
         }
-    }
+}
 ?>
