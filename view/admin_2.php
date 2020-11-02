@@ -1,6 +1,9 @@
 <?php
 require_once '../model/connection.php';
-
+session_start();
+if (!isset($_SESSION['user'])) {
+    header('Location:login.php');
+}
 // OJO
 // $id_sala = $_GET['id_sala'];
 $id_sala = 2;
@@ -61,6 +64,7 @@ function actualizar($salas) {
                 echo "</tr>";
             }
             ?>
+            <form action=""></form>
         </tbody>
     </table>
 </body>
