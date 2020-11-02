@@ -6,8 +6,8 @@
         <label for="email">Email</label>
         <input type="email" id="email" name="email" placeholder="Email..." require>
         
-        <label for="psswd">Contraseña</label>
-        <input type="password" id="psswd" name="psswd" placeholder="Contraseña...">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" name="password" placeholder="Contraseña...">
         
         <input type="submit" value="Iniciar sesión">
          <div id="message"></div>

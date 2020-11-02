@@ -1,15 +1,14 @@
 <?php
-include './admin.php';
-include './adminDao.php';
-  //crear un  admin como objeto
-    $admin = new Admin($_POST['email'],$_POST['psswd']);
-    $adminDAO = new AdminDao();
-    if($adminDAO->login($admin)){
-        header('Location: zona.admin.php');
-        // echo "conexion buena";
+include '../model/user.php';
+include '../model/userDAO.php';
+    $user = new Usuario($_POST['email'],$_POST['password']);
+    $userDAO = new UserDAO();
+    if($userDAO->login($user)){
+        header('Location: ../view/zona.admin1.php');
+        echo "conexion buena";
     }else {
-        ('Location: ../view/login.php'); 
-        // echo "algo falla 1";
+        header('Location: ../view/login.php'); 
+        echo "algo falla 1";
     }
 
 ?>
