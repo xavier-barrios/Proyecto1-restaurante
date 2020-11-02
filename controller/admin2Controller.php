@@ -21,6 +21,7 @@ if($actualizar == 'Liberar') {
         $pdo->beginTransaction();
         // OJO
         // tabla historico
+        // $query="INSERT INTO historico (id_historico, id_mesa, id_sala, sillas_mesa, fecha_inicio, fecha_fin, id_usuario VALUES (NULL,?,?,?,?,NOW(),?);";
         // $query="INSERT INTO `historico` (`id_historico`, `id_mesa`, `id_sala`, `sillas_mesa`, `fecha_inicio`, `fecha_fin`, `id_usuario`) VALUES (NULL, '1', '2', '6', '2020-11-02 16:27:37', current_timestamp(), '1');";
         $query="INSERT INTO `historico` (`id_historico`, `id_mesa`, `id_sala`, `sillas_mesa`, `fecha_inicio`, `fecha_fin`, `id_usuario`) VALUES (NULL, ?, ?, ?, ?, current_timestamp(), ?);";
         $query=$pdo->prepare($query);
