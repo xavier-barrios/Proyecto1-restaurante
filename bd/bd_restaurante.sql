@@ -1,3 +1,6 @@
+CREATE DATABASE bd_restaurante;
+USE DATABASE bd_restaurante;
+
 -- phpMyAdmin SQL Dump
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
