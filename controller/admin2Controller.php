@@ -1,6 +1,5 @@
 <?php
 require_once '../model/connection.php';
-
 $id_mesa = $_GET['id'];
 $actualizar = $_GET['act'];
 
@@ -47,23 +46,25 @@ if($actualizar == 'Liberar') {
         $sentencia1->bindParam(1,$id_usuario);
         $sentencia1->execute();
         $pdo->commit();
-        header('Location:../view/admin_2.php');
+        header("Location:../view/admin_2.php?id_sala={$id_sala}");
     } catch (Exception $ex) {
         $pdo->rollback();
         echo $ex->getMessage();
     }
-    header('Location:../view/admin_2.php');
+    header("Location:../view/admin_2.php?id_sala={$id_sala}");
 }else {
     // Está libre (hay que actualizar la tabla mesa con la fecha actual y el id del camarero)
     // OJO (viene por la sesión)
     $id_usuario=1;
+    $id_sala=$mesa['id_sala'];
     // FIN OJO
     // tabla mesa
     $query = "UPDATE mesa SET fecha_inicio=NOW(), id_usuario=? WHERE id_mesa = $id_mesa";
     $sentencia=$pdo->prepare($query);
     $sentencia->bindParam(1,$id_usuario);
     $sentencia->execute();
-    header('Location:../view/admin_2.php');
+    header("Location:../view/admin_2.php?id_sala={$id_sala}");
+    
 }
 
 ?>

@@ -1,7 +1,10 @@
 <?php
 include '../model/user.php';
 include '../model/userDAO.php';
-    $user = new Usuario($_POST['email'],$_POST['password']);
+// La contraseña es 1234 y la encriptada 81CMbBg2r.GBA (esta hay que ponerla en la base de datos) //
+    $salt = md5($_POST['password']);
+    $encr = crypt($_POST['password'], $salt);
+    $user = new Usuario($_POST['email'],$encr);
     $userDAO = new UserDAO();
     if($userDAO->login($user)){
         header('Location: ../view/admin1.php');

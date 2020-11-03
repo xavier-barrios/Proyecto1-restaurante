@@ -7,8 +7,8 @@
 </head>
 <body>
      <?php
-     require_once '../model/salaDAO.php';
-     require_once '../controller/sessionController.php';
+        require_once '../model/salaDAO.php';
+        require_once '../controller/sessionController.php';
     ?>
 
     <div>
@@ -22,11 +22,11 @@
             </tr>
             </thead>
                 <?php
-                $sala =  new SalaDAO();
-                echo $sala->mostrarSalasMesas();    
+                    $sala =  new SalaDAO();
+                    echo $sala->mostrarSalasMesas();    
                 ?>
         </table>
     </div>
-    <button href='./estadistica.php'>Estadisticas</button>
+    <a href='estadisticas.php'>Estadisticas</a>
 </body>
 </html>
