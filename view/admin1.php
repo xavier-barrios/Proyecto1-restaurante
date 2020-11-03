@@ -27,6 +27,6 @@
                 ?>
         </table>
     </div>
-    <button href='./estadistica.php'>Estadisticas</button>
+    <a href='estadisticas.php'>Estadisticas</a>
 </body>
 </html>
