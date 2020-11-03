@@ -1,12 +1,8 @@
 <?php
 require_once '../model/connection.php';
-session_start();
-if (!isset($_SESSION['user'])) {
-    header('Location:login.php');
-}
+
 // OJO
-// $id_sala = $_GET['id_sala'];
-$id_sala = 2;
+$id_sala = $_GET['id_sala'];
 // FIN OJO
 
 $query = "SELECT * FROM mesa WHERE id_sala = $id_sala";
