@@ -14,7 +14,7 @@
     
         <p><input type="password" id="password" name="password" placeholder="Contraseña"></p>
         <div id="message"></div><br>
-        <input type="submit" value="Iniciar sesión">
+        <input type="submit" value="Entrar">
          
       </form>
     </div>  
