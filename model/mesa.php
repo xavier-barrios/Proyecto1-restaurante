@@ -1,9 +1,9 @@
 <?php
-require_once '../model/connection.php';
-require_once '../model/user.php';
-if (!isset($_SESSION['user'])) {
-    header('Location:../view/login.php');
-}
+// require_once '../model/connection.php';
+// require_once 'user.php';
+// if (!isset($_SESSION['user'])) {
+//     header('Location:../view/login.php');
+// }
     class Mesa {
         private $id_mesa;
         private $numero_mesa;
