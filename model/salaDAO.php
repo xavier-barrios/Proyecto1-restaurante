@@ -1,7 +1,6 @@
 <?php
 require_once 'sala.php';
 class SalaDAO{
-    private $pdo;
 
     public function __construct(){
     }
