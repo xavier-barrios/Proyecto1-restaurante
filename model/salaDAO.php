@@ -1,5 +1,10 @@
 <?php
 require_once 'sala.php';
+// require_once '../model/connection.php';
+// require_once 'user.php';
+// if (!isset($_SESSION['user'])) {
+//     header('Location:../view/login.php');
+// }
 class SalaDAO{
 
     public function __construct(){
@@ -29,7 +34,7 @@ class SalaDAO{
             $sentencia3->execute();
             $mesas1=$sentencia3->fetchAll(PDO::FETCH_ASSOC);
 
-            echo "<td><a href='./admin_2.php?id_sala={$id}'>".$nombre."</td>";
+            echo "<td><a href='./admin_2.php?id_sala={$id}&nombre_sala={$nombre}'>".$nombre."</td>";
                 foreach ($mesas as $mesa) {
                     $ocupada = $mesa['Ocupada'];
                     echo "<td style='text-align: center;'>".$ocupada."</td>";

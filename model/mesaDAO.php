@@ -1,5 +1,10 @@
 <?php
 require_once 'mesa.php';
+// require_once '../model/connection.php';
+// require_once 'user.php';
+// if (!isset($_SESSION['user'])) {
+//     header('Location:../view/login.php');
+// }
 class MesaDAO{
 
     public function __construct(){
@@ -7,16 +12,12 @@ class MesaDAO{
 
     public function mostrarMesas(){
         require_once '../model/connection.php';
-
-        // OJO
         $id_sala = $_GET['id_sala'];
-        // FIN OJO
 
         $query = "SELECT * FROM mesa WHERE id_sala = $id_sala";
         $sentencia=$pdo->prepare($query);
         $sentencia->execute();
         $salas=$sentencia->fetchAll(PDO::FETCH_ASSOC);
-        // print_r($salas);
 
         function estado($salas) {
             if($salas['id_usuario'] == NULL) {

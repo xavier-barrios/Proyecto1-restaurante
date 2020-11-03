@@ -1,5 +1,10 @@
 <?php
 require_once '../model/connection.php';
+// require_once '../model/user.php';
+// if (!isset($_SESSION['user'])) {
+//     header('Location:../view/login.php');
+// }
+
 $id_mesa = $_GET['id'];
 $actualizar = $_GET['act'];
 

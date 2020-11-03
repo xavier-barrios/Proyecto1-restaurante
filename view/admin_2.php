@@ -1,3 +1,10 @@
+<?php
+// require_once '../model/user.php';
+// require_once '../model/connection.php';
+// if (!isset($_SESSION['user'])) {
+//     header('Location:login.php');
+// }
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,8 +16,9 @@
     <?php
         require_once '../model/mesaDAO.php';
         require_once '../controller/sessionController.php';
+        $nombre_sala = $_GET['nombre_sala'];
     ?>
-    <h1>Admin2</h1>
+    <h1><?php echo $nombre_sala;?></h1>
     <table>
         <thead>
             <tr>
@@ -27,5 +35,6 @@
             <form action=""></form>
         </tbody>
     </table>
+    <a href="./admin_1.php">Volver</a>
 </body>
 </html>

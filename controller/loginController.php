@@ -7,7 +7,7 @@ include '../model/userDAO.php';
     $user = new Usuario($_POST['email'],$encr);
     $userDAO = new UserDAO();
     if($userDAO->login($user)){
-        header('Location: ../view/admin1.php');
+        header('Location: ../view/admin_1.php');
         echo "conexion buena";
     }else {
         header('Location: ../view/login.php'); 
