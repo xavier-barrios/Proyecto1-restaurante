@@ -2,8 +2,8 @@
 require_once '../model/connection.php';
 
 // OJO
-// $id_sala = $_GET['id_sala'];
 $id_sala = $_GET['id_sala'];
+echo $id_sala;
 // FIN OJO
 
 $query = "SELECT * FROM mesa WHERE id_sala = $id_sala";
