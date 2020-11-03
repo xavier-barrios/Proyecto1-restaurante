@@ -4,10 +4,6 @@ class MesaDAO{
 
     public function __construct(){
     }
-    
-    public function filtrarEstadisticas(){
-        
-    }
 
     public function mostrarMesas(){
         require_once '../model/connection.php';
