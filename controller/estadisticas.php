@@ -45,7 +45,7 @@ $lista_historico=$sentencia->fetchAll(PDO::FETCH_ASSOC);
 <?php
 
 foreach($lista_historico as $historico) {
-  //$id=$persona['id_alumno'];
+
   ?>
 
   <tr>
