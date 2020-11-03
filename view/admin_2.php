@@ -1,38 +1,3 @@
-<?php
-require_once '../model/connection.php';
-
-$id_sala = $_GET['id'];
-
-$query = "SELECT * FROM mesa WHERE id_sala = $id_sala";
-$sentencia=$pdo->prepare($query);
-$sentencia->execute();
-$salas=$sentencia->fetchAll(PDO::FETCH_ASSOC);
-// print_r($salas);
-
-$query1 = "SELECT nombre FROM sala WHERE id_sala = $id_sala";
-$sentencia1=$pdo->prepare($query1);
-$sentencia1->execute();
-$nombre_sala=$sentencia1->fetch(PDO::FETCH_ASSOC);
-
-
-function estado($salas) {
-    if($salas['id_usuario'] == NULL) {
-        return 'Libre';
-    } else {
-        return 'Ocupada';
-    }
-}
-
-function actualizar($salas) {
-    if($salas['id_usuario'] == NULL) {
-        return 'Ocupar';
-    } else {
-        return 'Liberar';
-    }
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -41,8 +6,11 @@ function actualizar($salas) {
     <title>Admin2</title>
 </head>
 <body>
-    <!-- CONSULTA PARA SABER NOMBRE SALA -->
-    <h1><?php echo $nombre_sala['nombre']; ?></h1>
+    <?php
+        require_once '../model/mesaDAO.php';
+        require_once '../controller/sessionController.php';
+    ?>
+    <h1>Admin2</h1>
     <table>
         <thead>
             <tr>
@@ -53,16 +21,8 @@ function actualizar($salas) {
         </thead>
         <tbody>
         <?php
-            foreach($salas as $sala) {
-                $id = $sala['id_mesa'];
-                $actualizar = actualizar($sala);
-                echo "<tr>";
-                echo "<td>{$sala['numero_mesa']}</td>";
-                echo "<td>{$sala['sillas_mesa']}</td>";
-                echo "<td>".estado($sala)."</td>";
-                echo "<td><a href='../controller/admin2Controller.php?id=$id&act=$actualizar'>".$actualizar."</a></td>";
-                echo "</tr>";
-            }
+            $sala =  new MesaDAO();
+            echo $sala->mostrarMesas();
             ?>
             <form action=""></form>
         </tbody>
