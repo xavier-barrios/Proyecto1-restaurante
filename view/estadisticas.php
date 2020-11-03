@@ -5,11 +5,11 @@ session_start();
 
 if (isset($_POST['sala']) || isset($_POST['mesa'])){
   $query="SELECT sala.nombre, mesa.numero_mesa, historico.fecha_inicio, historico.fecha_fin FROM historico INNER JOIN mesa ON historico.id_mesa = mesa.id_mesa INNER JOIN sala ON mesa.id_sala = sala.id_sala WHERE sala.nombre LIKE '%{$_POST['sala']}%' AND mesa.numero_mesa LIKE '%{$_POST['mesa']}%'";
-  $query3="SELECT sala.nombre, mesa.numero_mesa, COUNT(numero_mesa) as veces_mesa FROM historico INNER JOIN mesa ON historico.id_mesa = mesa.id_mesa INNER JOIN sala ON mesa.id_sala = sala.id_sala WHERE sala.nombre LIKE '%{$_POST['sala']}%' AND mesa.numero_mesa LIKE '%{$_POST['mesa']}%' GROUP BY sala.nombre";
+  $query3="SELECT sala.nombre, mesa.numero_mesa, COUNT(numero_mesa) as veces_mesa FROM historico INNER JOIN mesa ON historico.id_mesa = mesa.id_mesa INNER JOIN sala ON mesa.id_sala = sala.id_sala WHERE sala.nombre LIKE '%{$_POST['sala']}%' AND mesa.numero_mesa LIKE '%{$_POST['mesa']}%' GROUP BY sala.nombre, mesa.numero_mesa";
   $sentencia3=$pdo->prepare($query3);
   $sentencia3->execute();
   $num_reservas=$sentencia3->fetchAll(PDO::FETCH_ASSOC);
-  print_r($num_reservas);
+  $numRow=$sentencia3->rowCount();
 }else {
   $query="SELECT sala.nombre, mesa.numero_mesa, historico.fecha_inicio, historico.fecha_fin FROM historico INNER JOIN mesa ON historico.id_mesa = mesa.id_mesa INNER JOIN sala ON mesa.id_sala = sala.id_sala";
 }
@@ -17,7 +17,7 @@ if (isset($_POST['sala']) || isset($_POST['mesa'])){
 $sentencia=$pdo->prepare($query);
 $sentencia->execute();
 $lista_historico=$sentencia->fetchAll(PDO::FETCH_ASSOC);
-
+$numRow=$sentencia->rowCount();
 
 
 
@@ -54,6 +54,7 @@ $lista_historico=$sentencia->fetchAll(PDO::FETCH_ASSOC);
             <tbody>
               <tr>
       <?php
+        if($numRow != 0) {
           foreach($num_reservas as $num_reserva) {
 
       ?>
@@ -62,6 +63,9 @@ $lista_historico=$sentencia->fetchAll(PDO::FETCH_ASSOC);
         <td><?php echo "{$num_reserva['veces_mesa']}"; ?></td>
       </tr>
       <?php
+          }
+        }else {
+          echo "<td>0 resultados</td>";
         }
       }
       ?>
@@ -80,7 +84,8 @@ $lista_historico=$sentencia->fetchAll(PDO::FETCH_ASSOC);
 
 <?php
 
-foreach($lista_historico as $historico) {
+if($numRow != 0) {
+  foreach($lista_historico as $historico) {
 
   ?>
 
@@ -92,7 +97,9 @@ foreach($lista_historico as $historico) {
   </tr>
 
 <?php
-    
+  }
+}else {
+  echo "<td>0 resultados</td>";
 }
 
 ?>
