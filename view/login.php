@@ -12,5 +12,7 @@
         <input type="submit" value="Iniciar sesión">
          <div id="message"></div>
       </form>
+      <?php
+    ?>
   </body>
 </html>
