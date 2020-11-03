@@ -5,6 +5,11 @@ session_start();
 
 if (isset($_POST['sala']) || isset($_POST['mesa'])){
   $query="SELECT sala.nombre, mesa.numero_mesa, historico.fecha_inicio, historico.fecha_fin FROM historico INNER JOIN mesa ON historico.id_mesa = mesa.id_mesa INNER JOIN sala ON mesa.id_sala = sala.id_sala WHERE sala.nombre LIKE '%{$_POST['sala']}%' AND mesa.numero_mesa LIKE '%{$_POST['mesa']}%'";
+  $query3="SELECT sala.nombre, mesa.numero_mesa, COUNT(numero_mesa) as veces_mesa FROM historico INNER JOIN mesa ON historico.id_mesa = mesa.id_mesa INNER JOIN sala ON mesa.id_sala = sala.id_sala WHERE sala.nombre LIKE '%{$_POST['sala']}%' AND mesa.numero_mesa LIKE '%{$_POST['mesa']}%'";
+  $sentencia3=$pdo->prepare($query3);
+  $sentencia3->execute();
+  $num_reservas=$sentencia3->fetchAll(PDO::FETCH_ASSOC);
+  print_r($num_reservas);
 }else {
   $query="SELECT sala.nombre, mesa.numero_mesa, historico.fecha_inicio, historico.fecha_fin FROM historico INNER JOIN mesa ON historico.id_mesa = mesa.id_mesa INNER JOIN sala ON mesa.id_sala = sala.id_sala";
 }
@@ -12,6 +17,9 @@ if (isset($_POST['sala']) || isset($_POST['mesa'])){
 $sentencia=$pdo->prepare($query);
 $sentencia->execute();
 $lista_historico=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+
+
 
 ?>
 
@@ -31,16 +39,44 @@ $lista_historico=$sentencia->fetchAll(PDO::FETCH_ASSOC);
   <title>Estadísticas</title>
 </head>
 <body>
-<table>
-  <thead>
-    <tr>
-      <th>Sala</th>
-      <th>Mesa</th>
-      <th>Fecha Inicio</th>
-      <th>Fecha Fin</th>
-    </tr>
-  </thead>
-  <tbody>
+      <?php
+        if(isset($_POST['filtro'])) {
+      ?>
+          <h2>Resumen</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre sala</th>
+                <th>Mesa</th>
+                <th>Nº de veces reservada</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+      <?php
+          foreach($num_reservas as $num_reserva) {
+
+      ?>
+        <td><?php echo "{$num_reserva['nombre']}"; ?></td>
+        <td><?php echo "{$num_reserva['numero_mesa']}"; ?></td>
+        <td><?php echo "{$num_reserva['veces_mesa']}"; ?></td>
+      </tr>
+      <?php
+        }
+      }
+      ?>
+    </tbody>
+  </table>
+  <table>
+    <thead>
+      <tr>
+        <th>Sala</th>
+        <th>Mesa</th>
+        <th>Fecha Inicio</th>
+        <th>Fecha Fin</th>
+      </tr>
+    </thead>
+    <tbody>
 
 <?php
 
