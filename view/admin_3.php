@@ -6,6 +6,12 @@
     <title>Restaurante</title>
 </head>
 <body>
-   
+    <?php
+        require_once '../controller/sessionController.php';
+    ?>
+
+    <div>
+    <h2>Restaurante Central Peak</h2>
+    </div>
 </body>
 </html>
