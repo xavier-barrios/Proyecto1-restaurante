@@ -13,6 +13,7 @@ class UserDao{
         $sentencia=$this->pdo->prepare($query);
         $email=$user->getEmail();
         $psswd=$user->getPassword();
+        $puesto=$user->getPuesto_trabajo();
         $sentencia->bindParam(1,$email);
         $sentencia->bindParam(2,$psswd);
         $sentencia->execute();
