@@ -36,7 +36,7 @@ if($actualizar == 'Liberar') {
         $id_sala=$mesa['id_sala'];
         $sillas_mesa=$mesa['sillas_mesa'];
         $fecha_inicio=$mesa['fecha_inicio'];
-        $id_usuario=$mesa['id_usuario'];
+        // $id_usuario=$mesa['id_usuario'];
         $query->bindParam(1,$id_mesa);
         $query->bindParam(2,$id_sala);
         $query->bindParam(3,$sillas_mesa);
