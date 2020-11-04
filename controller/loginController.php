@@ -5,7 +5,7 @@ include '../model/userDAO.php';
     $salt = md5($_POST['password']);
     $encr = crypt($_POST['password'], $salt);
 // Vamos a controlar que si el usuario que se logea es un camarero, que rediriga a la pagina de mostrar salas, y si es de mantenimiento, que rediriga a la pagina de vista de incidencias //
-    $puesto = $_POST['puesto_trabajo'];
+    $puesto = $_GET['puesto'];
     if ($puesto == 'camarero') {
         $user = new Usuario($_POST['email'],$encr);
         $userDAO = new UserDAO();
