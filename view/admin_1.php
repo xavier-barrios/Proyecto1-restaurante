@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurante</title>
+    <title>Restaurante Central Peak</title>
 </head>
 <body>
      <?php
@@ -19,7 +19,7 @@
     ?>
 
     <div>
-        <h2>Restaurante</h2>
+        <h2>Restaurante Central Peak</h2>
         <table>
             <thead>
             <tr>

@@ -9,9 +9,10 @@
         private $email;
         private $password;
 
-        function __construct($email, $password){
+        function __construct($email, $password, $id_usuario){
             $this->email=$email;
             $this->password=$password;
+            $this->id_usuario=$id_usuario;
         }
 
         /**
