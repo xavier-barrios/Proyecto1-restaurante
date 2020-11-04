@@ -13,6 +13,7 @@ class MesaDAO{
     public function mostrarMesas(){
         require_once '../model/connection.php';
         $id_sala = $_GET['id_sala'];
+        $nombre = $_GET['nombre'];
 
         $query = "SELECT * FROM mesa WHERE id_sala = $id_sala";
         $sentencia=$pdo->prepare($query);
@@ -41,7 +42,7 @@ class MesaDAO{
             echo "<td>{$sala['numero_mesa']}</td>";
             echo "<td>{$sala['sillas_mesa']}</td>";
             echo "<td>".estado($sala)."</td>";
-            echo "<td><a href='../controller/admin2Controller.php?id=$id&act=$actualizar'>".$actualizar."</a></td>";
+            echo "<td><a href='../controller/admin2Controller.php?id=$id&act=$actualizar&nombre={$nombre}'>".$actualizar."</a></td>";
             echo "</tr>";
         }
     }
