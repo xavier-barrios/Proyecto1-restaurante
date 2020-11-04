@@ -5,26 +5,25 @@ include '../model/userDAO.php';
     $salt = md5($_POST['password']);
     $encr = crypt($_POST['password'], $salt);
 // Vamos a controlar que si el usuario que se logea es un camarero, que rediriga a la pagina de mostrar salas, y si es de mantenimiento, que rediriga a la pagina de vista de incidencias //
-    $puesto = $_GET['puesto'];
-    if ($puesto == 'camarero') {
-        $user = new Usuario($_POST['email'],$encr);
+    if ($_POST['email'] == 'sergio@gmail.com' || $_POST['email'] == 'danny@gmail.com') {
+        $user = new Usuario($_POST['email'],$encr,$_POST['camarero']);
         $userDAO = new UserDAO();
         if($userDAO->login($user)){
             header('Location: ../view/admin1.php');
-            echo "conexion buena";
+            echo "conexion buena 1";
         }else {
             header('Location: ../view/login.php'); 
             echo "algo falla 1";
         }
-    } else if ($puesto == 'mantenimiento') {
-        $user = new Usuario($_POST['email'],$encr);
+    } else if ($_POST['email'] == 'agnes@gmail.com' || $_POST['email'] == 'ignasi@gmail.com') {
+        $user = new Usuario($_POST['email'],$encr,$_POST['mantenimiento']);
         $userDAO = new UserDAO();
         if($userDAO->login($user)){
             header('Location: ../view/adminMantenimiento.php');
-            echo "conexion buena";
+            echo "conexion buena 2";
         }else {
             header('Location: ../view/login.php'); 
-            echo "algo falla 1";
+            echo "algo falla 2";
         }   
     } else {
         echo "Los usuarios no son correctos";

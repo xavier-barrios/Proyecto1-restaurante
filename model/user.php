@@ -3,7 +3,7 @@
         private $id_usuario;
         private $email;
         private $password;
-        //private $puesto_trabajo;
+        private $puesto_trabajo;
 
         function __construct($email, $password, $puesto_trabajo){
             $this->email=$email;
