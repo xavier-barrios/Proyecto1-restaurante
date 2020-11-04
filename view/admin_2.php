@@ -16,9 +16,9 @@
     <?php
         require_once '../model/mesaDAO.php';
         require_once '../controller/sessionController.php';
-        $nombre_sala = $_GET['nombre_sala'];
+        $nombre = $_GET['nombre'];
     ?>
-    <h1><?php echo $nombre_sala;?></h1>
+    <h1><?php echo $nombre;?></h1>
     <table>
         <thead>
             <tr>

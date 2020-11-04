@@ -7,6 +7,7 @@ require_once '../model/connection.php';
 
 $id_mesa = $_GET['id'];
 $actualizar = $_GET['act'];
+$nombre = $_GET['nombre'];
 
 echo "id_mesa: {$id_mesa}";
 echo "id_mesa: {$actualizar}";
@@ -23,6 +24,7 @@ if($actualizar == 'Liberar') {
     try {
         // Empezar transacción
         $pdo->beginTransaction();
+        $nombre = $_GET['nombre'];
         // OJO
         // tabla historico
         // $query="INSERT INTO historico (id_historico, id_mesa, id_sala, sillas_mesa, fecha_inicio, fecha_fin, id_usuario VALUES (NULL,?,?,?,?,NOW(),?);";
@@ -51,24 +53,25 @@ if($actualizar == 'Liberar') {
         $sentencia1->bindParam(1,$id_usuario);
         $sentencia1->execute();
         $pdo->commit();
-        header("Location:../view/admin_2.php?id_sala={$id_sala}");
+        header("Location:../view/admin_2.php?id_sala={$id_sala}&nombre={$nombre}");
     } catch (Exception $ex) {
         $pdo->rollback();
         echo $ex->getMessage();
     }
-    header("Location:../view/admin_2.php?id_sala={$id_sala}");
+    header("Location:../view/admin_2.php?id_sala={$id_sala}&nombre={$nombre}");
 }else {
     // Está libre (hay que actualizar la tabla mesa con la fecha actual y el id del camarero)
     // OJO (viene por la sesión)
     $id_usuario=1;
     $id_sala=$mesa['id_sala'];
+    $nombre = $_GET['nombre'];
     // FIN OJO
     // tabla mesa
     $query = "UPDATE mesa SET fecha_inicio=NOW(), id_usuario=? WHERE id_mesa = $id_mesa";
     $sentencia=$pdo->prepare($query);
     $sentencia->bindParam(1,$id_usuario);
     $sentencia->execute();
-    header("Location:../view/admin_2.php?id_sala={$id_sala}");
+    header("Location:../view/admin_2.php?id_sala={$id_sala}&nombre={$nombre}");
     
 }
 
