@@ -1,18 +1,15 @@
 <?php
-// require_once '../model/connection.php';
-// require_once 'user.php';
-// if (!isset($_SESSION['user'])) {
-//     header('Location:../view/login.php');
-// }
     class Usuario{
         private $id_usuario;
         private $email;
         private $password;
+        private $puesto_trabajo;
 
-        function __construct($email, $password, $id_usuario){
+        function __construct($id_usuario, $email, $password, $puesto_trabajo){
+            $this->id_usuario=$id_usuario;
             $this->email=$email;
             $this->password=$password;
-            $this->id_usuario=$id_usuario;
+            $this->puesto_trabajo=$puesto_trabajo;
         }
 
         /**
@@ -71,6 +68,26 @@
         public function setPassword($password)
         {
                 $this->password = $password;
+
+                return $this;
+        }
+        /*
+        /**
+         * Get the value of puesto_trabajo
+         */ 
+        public function getPuesto_trabajo()
+        {
+                return $this->puesto_trabajo;
+        }
+
+        /**
+         * Set the value of puesto_trabajo
+         *
+         * @return  self
+         */ 
+        public function setPuesto_trabajo($puesto_trabajo)
+        {
+                $this->puesto_trabajo = $puesto_trabajo;
 
                 return $this;
         }
