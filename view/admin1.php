@@ -31,4 +31,3 @@
     <a href='estadisticas.php'>Estadisticas</a>
 </body>
 </html>
-
