@@ -9,4 +9,4 @@ require_once '../model/historicoDAO.php';
 $historico = new HistoricoDAO();
 echo $historico->filtrarHistorico();
 
-echo "<a href='./admin_1.php'>Volver</a>";
+// echo "<a href='./admin_1.php'>Volver</a>";

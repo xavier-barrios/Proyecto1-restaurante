@@ -43,9 +43,9 @@
                     </tbody>
                 </table>
             </div>
-            <div class="volver">
+            <!-- <div class="volver">
                 <a href="./admin_1.php">Volver</a>
-            </div>
+            </div> -->
         </div>
     </main>    
     

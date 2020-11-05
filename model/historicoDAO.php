@@ -95,6 +95,7 @@ class HistoricoDAO{
 
                 <main class="main--admin container">  
                   <div class="container-admin">
+                    <h2>Total</h2>
                     <div class="admin--table">
                       <table>
                         <thead>

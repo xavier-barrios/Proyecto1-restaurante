@@ -8,11 +8,17 @@
         private $id_usuario;
         private $email;
         private $password;
+        private $puesto_trabajo;
 
+        // function __construct($email, $password, $puesto_trabajo){
+        //     $this->email=$email;
+        //     $this->password=$password;
+        //     $this->puesto_trabajo=$puesto_trabajo;
+        // }
         function __construct($email, $password){
-            $this->email=$email;
-            $this->password=$password;
-        }
+                $this->email=$email;
+                $this->password=$password;
+            }
 
         /**
          * Get the value of id_usuario
@@ -70,6 +76,26 @@
         public function setPassword($password)
         {
                 $this->password = $password;
+
+                return $this;
+        }
+        /*
+        /**
+         * Get the value of puesto_trabajo
+         */ 
+        public function getPuesto_trabajo()
+        {
+                return $this->puesto_trabajo;
+        }
+
+        /**
+         * Set the value of puesto_trabajo
+         *
+         * @return  self
+         */ 
+        public function setPuesto_trabajo($puesto_trabajo)
+        {
+                $this->puesto_trabajo = $puesto_trabajo;
 
                 return $this;
         }

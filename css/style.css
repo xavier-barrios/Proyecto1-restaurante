@@ -174,7 +174,7 @@ header .header-container ul a {
   margin-left: 1rem;
   border: 1px solid #dadada;
 }
-.historico .historico-filtro input[type=submit] {
+.historico .historico-filtro input[type='submit'] {
   background-color: #28d;
   color: white;
   margin-left: 0;

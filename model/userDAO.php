@@ -13,12 +13,14 @@ class UserDao{
     }
 
     public function login($user){
-        $query = "SELECT * FROM usuario WHERE `email`=? AND `password`=?";
+        $query = "SELECT * FROM usuario WHERE `email`=? AND `password`=? AND `puesto_trabajo`=?";
         $sentencia=$this->pdo->prepare($query);
         $email=$user->getEmail();
         $psswd=$user->getPassword();
+        $puesto=$user->getPuesto_trabajo();
         $sentencia->bindParam(1,$email);
         $sentencia->bindParam(2,$psswd);
+        $sentencia->bindParam(3,$puesto);
         $sentencia->execute();
         $result=$sentencia->fetch(PDO::FETCH_ASSOC);
         $numRow=$sentencia->rowCount();
