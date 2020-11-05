@@ -10,15 +10,12 @@
         private $password;
         private $puesto_trabajo;
 
-        // function __construct($email, $password, $puesto_trabajo){
-        //     $this->email=$email;
-        //     $this->password=$password;
-        //     $this->puesto_trabajo=$puesto_trabajo;
-        // }
-        function __construct($email, $password){
-                $this->email=$email;
-                $this->password=$password;
-            }
+        function __construct($id_usuario, $email, $password, $puesto_trabajo){
+            $this->id_usuario=$id_usuario;
+            $this->email=$email;
+            $this->password=$password;
+            $this->puesto_trabajo=$puesto_trabajo;
+        }
 
         /**
          * Get the value of id_usuario

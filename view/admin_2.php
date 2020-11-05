@@ -10,10 +10,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mesas</title>
+    <title>Central Peak</title>
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <?php
@@ -48,6 +49,6 @@
             </div> -->
         </div>
     </main>    
-    
+
 </body>
 </html>
