@@ -48,7 +48,6 @@ CREATE TABLE `historico` (
 
 CREATE TABLE `incidencias` (
   `id_incidencia` int(11) NOT NULL,
-  `descripcion` varchar(255) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `id_sala` int(11) NOT NULL,
   `id_mesa` int(11) NOT NULL
