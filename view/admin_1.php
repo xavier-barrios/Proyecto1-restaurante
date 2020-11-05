@@ -1,16 +1,9 @@
-<?php
-// require_once '../model/user.php';
-// require_once '../model/connection.php';
-// if (!isset($_SESSION['user'])) {
-//     header('Location:login.php');
-// }
-?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurante Central Peak</title>
+    <title>Restaurante</title>
 </head>
 <body>
      <?php
@@ -19,7 +12,7 @@
     ?>
 
     <div>
-        <h2>Restaurante Central Peak</h2>
+        <h2>Restaurante</h2>
         <table>
             <thead>
             <tr>
@@ -30,10 +23,12 @@
             </thead>
                 <?php
                     $sala =  new SalaDAO();
-                    echo $sala->mostrarSalasMesas();    
+                    echo $sala->mostrarSalasMesas(); 
                 ?>
+
         </table>
     </div>
     <a href='estadisticas.php'>Estadisticas</a>
 </body>
 </html>
+
