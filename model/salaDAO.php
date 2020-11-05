@@ -75,8 +75,18 @@ class SalaDAO{
             $sentencia3->execute();
             $mesas1=$sentencia3->fetchAll(PDO::FETCH_ASSOC);
 
-            echo "<td><a href='./adminMantenimiento2.php?id_sala={$id}'>".$nombre."</td>";
+            echo "<td><a href='./adminMantenimiento2.php?id_sala={$id}&nombre={$nombre}'>".$nombre."</td>";
 
+            foreach ($mesas as $mesa) {
+                $ocupada = $mesa['Ocupada'];
+                echo "<td style='text-align: center;'>".$ocupada."</td>";
+            }
+
+            foreach ($mesas1 as $mesa1) {
+                $libre = $mesa1['Libre'];
+                echo "<td style='text-align: center;'>".$libre."</td>";
+                echo "</tr>";
+            }
         }
     }
 }
