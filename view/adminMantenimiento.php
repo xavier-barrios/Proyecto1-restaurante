@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurante</title>
+    <title>Incidencias</title>
 </head>
 <body>
      <?php
@@ -12,7 +12,7 @@
     ?>
 
     <div>
-        <h2>Restaurante</h2>
+        <h2>Incidencias</h2>
         <table>
             <thead>
             <tr>
@@ -21,13 +21,12 @@
                 <th>Mesas Libres</th>
             </tr>
             </thead>
-                <?php
-                    $sala =  new SalaDAO();
-                    echo $sala->mostrarSalasMesas(); 
-                ?>
-
+            <?php
+                $sala =  new SalaDAO();
+                echo $sala->mostrarSalasMesasMan();
+            
+            ?>
         </table>
     </div>
-    <a href='estadisticas.php'>Estadisticas</a>
 </body>
 </html>

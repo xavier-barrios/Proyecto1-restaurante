@@ -5,7 +5,8 @@
         private $password;
         private $puesto_trabajo;
 
-        function __construct($email, $password, $puesto_trabajo){
+        function __construct($id_usuario, $email, $password, $puesto_trabajo){
+            $this->id_usuario=$id_usuario;
             $this->email=$email;
             $this->password=$password;
             $this->puesto_trabajo=$puesto_trabajo;

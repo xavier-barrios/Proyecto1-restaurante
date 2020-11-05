@@ -14,8 +14,6 @@
     
         <p><input type="password" id="password" name="password" placeholder="Contraseña"></p>
         <div id="message"></div><br>
-        <input type="hidden" id="camarero" name="camarero" value="camarero">
-        <input type="hidden" id="mantenimiento" name="mantenimiento" value="mantenimiento">
         <input type="submit" value="Entrar">
          
       </form>
