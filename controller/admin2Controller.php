@@ -1,11 +1,14 @@
 <?php
 require_once '../model/connection.php';
+
 require_once '../controller/sessionController.php';
 // require_once '../model/user.php';
 // if (!isset($_SESSION['user'])) {
 //     header('Location:../view/login.php');
 // }
+
 $id_usuario=$_SESSION['user']->getId_usuario();
+
 $id_mesa = $_GET['id'];
 $actualizar = $_GET['act'];
 $nombre = $_GET['nombre'];
@@ -25,7 +28,9 @@ if($actualizar == 'Liberar') {
     try {
         // Empezar transacción
         $pdo->beginTransaction();
+
         // $nombre = $_GET['nombre'];
+
         // OJO
         // tabla historico
         // $query="INSERT INTO historico (id_historico, id_mesa, id_sala, sillas_mesa, fecha_inicio, fecha_fin, id_usuario VALUES (NULL,?,?,?,?,NOW(),?);";
