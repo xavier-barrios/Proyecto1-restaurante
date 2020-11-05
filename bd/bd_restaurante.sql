@@ -1,16 +1,16 @@
-CREATE DATABASE bd_restaurante;
-USE bd_restaurante;
-
+create DATABASE bd_restaurante;
+use bd_restaurante;
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-11-2020 a las 15:34:01
--- Versión del servidor: 10.4.14-MariaDB
--- Versión de PHP: 7.2.33
+-- Tiempo de generación: 04-11-2020 a las 19:01:55
+-- Versión del servidor: 10.4.8-MariaDB
+-- Versión de PHP: 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -43,6 +43,20 @@ CREATE TABLE `historico` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `incidencias`
+--
+
+CREATE TABLE `incidencias` (
+  `id_incidencia` int(11) NOT NULL,
+  `descripcion` varchar(255) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `id_sala` int(11) NOT NULL,
+  `id_mesa` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `mesa`
 --
 
@@ -60,10 +74,18 @@ CREATE TABLE `mesa` (
 --
 
 INSERT INTO `mesa` (`id_mesa`, `numero_mesa`, `id_sala`, `sillas_mesa`, `fecha_inicio`, `id_usuario`) VALUES
-(1, 1, 1, 4, '2020-10-31 19:34:58', 1),
-(2, 2, 1, 5, '2020-10-31 19:34:58', 1),
-(3, 1, 2, 6, NULL, NULL),
-(5, 2, 2, 4, '2020-11-01 10:16:21', 1);
+(1, 1, 1, 4, NULL, NULL),
+(2, 2, 1, 6, NULL, NULL),
+(3, 3, 1, 5, NULL, NULL),
+(4, 1, 2, 3, NULL, NULL),
+(5, 2, 2, 7, NULL, NULL),
+(6, 1, 3, 2, NULL, NULL),
+(7, 2, 3, 5, NULL, NULL),
+(8, 3, 3, 3, NULL, NULL),
+(9, 4, 3, 4, NULL, NULL),
+(10, 1, 4, 4, NULL, NULL),
+(11, 2, 4, 2, NULL, NULL),
+(12, 3, 4, 4, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -83,8 +105,10 @@ CREATE TABLE `sala` (
 --
 
 INSERT INTO `sala` (`id_sala`, `nombre`, `capacidad`, `mesas`) VALUES
-(1, 'menjador_1', 20, 4),
-(2, 'menjador_2', 30, 6);
+(1, 'comerdor_1', 20, 3),
+(2, 'comedor_2', 30, 2),
+(3, 'terraza', 25, 4),
+(4, 'exclusiva', 10, 3);
 
 -- --------------------------------------------------------
 
@@ -95,15 +119,19 @@ INSERT INTO `sala` (`id_sala`, `nombre`, `capacidad`, `mesas`) VALUES
 CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL
+  `email` varchar(255) NOT NULL,
+  `puesto_trabajo` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id_usuario`, `password`, `email`) VALUES
-(1, '1234', 'random@gmail.com');
+INSERT INTO `usuario` (`id_usuario`, `password`, `email`, `puesto_trabajo`) VALUES
+(1, '81CMbBg2r.GBA', 'sergio@gmail.com', 'camarero'),
+(2, '81CMbBg2r.GBA', 'danny@gmail.com', 'camarero'),
+(3, '81CMbBg2r.GBA', 'agnes@gmail.com', 'mantenimiento'),
+(4, '81CMbBg2r.GBA', 'ignasi@gmail.com', 'mantenimiento');
 
 --
 -- Índices para tablas volcadas
@@ -117,6 +145,15 @@ ALTER TABLE `historico`
   ADD KEY `id_mesa` (`id_mesa`),
   ADD KEY `id_sala` (`id_sala`),
   ADD KEY `id_usuario` (`id_usuario`);
+
+--
+-- Indices de la tabla `incidencias`
+--
+ALTER TABLE `incidencias`
+  ADD PRIMARY KEY (`id_incidencia`),
+  ADD KEY `inci_ibfk_1` (`id_usuario`),
+  ADD KEY `inci_ibfk_2` (`id_mesa`),
+  ADD KEY `inci_ibfk_3` (`id_sala`);
 
 --
 -- Indices de la tabla `mesa`
@@ -149,22 +186,28 @@ ALTER TABLE `historico`
   MODIFY `id_historico` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `incidencias`
+--
+ALTER TABLE `incidencias`
+  MODIFY `id_incidencia` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `mesa`
 --
 ALTER TABLE `mesa`
-  MODIFY `id_mesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_mesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `sala`
 --
 ALTER TABLE `sala`
-  MODIFY `id_sala` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_sala` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
@@ -177,6 +220,14 @@ ALTER TABLE `historico`
   ADD CONSTRAINT `historico_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `historico_ibfk_2` FOREIGN KEY (`id_mesa`) REFERENCES `mesa` (`id_mesa`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `historico_ibfk_3` FOREIGN KEY (`id_sala`) REFERENCES `sala` (`id_sala`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `incidencias`
+--
+ALTER TABLE `incidencias`
+  ADD CONSTRAINT `inci_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `inci_ibfk_2` FOREIGN KEY (`id_mesa`) REFERENCES `mesa` (`id_mesa`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `inci_ibfk_3` FOREIGN KEY (`id_sala`) REFERENCES `sala` (`id_sala`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `mesa`

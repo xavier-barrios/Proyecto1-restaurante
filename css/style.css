@@ -1,3 +1,4 @@
+/* Login */
 .fondo_login {
     background-image: url(../img/banner.jpg);
     background-repeat: no-repeat;
@@ -77,3 +78,4 @@
   .login input[type="submit"]:focus {
     border-color: #05a;
   }
+  /* fin Login */

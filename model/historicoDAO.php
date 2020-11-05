@@ -1,5 +1,10 @@
 <?php
 require_once 'historico.php';
+// require_once '../model/connection.php';
+// require_once 'user.php';
+// if (!isset($_SESSION['user'])) {
+//     header('Location:../view/login.php');
+// }
 class HistoricoDAO{
 
     public function __construct(){
@@ -9,11 +14,11 @@ class HistoricoDAO{
         require_once '../model/connection.php';
         if (isset($_POST['sala']) || isset($_POST['mesa'])){
             $query="SELECT sala.nombre, mesa.numero_mesa, historico.fecha_inicio, historico.fecha_fin FROM historico INNER JOIN mesa ON historico.id_mesa = mesa.id_mesa INNER JOIN sala ON mesa.id_sala = sala.id_sala WHERE sala.nombre LIKE '%{$_POST['sala']}%' AND mesa.numero_mesa LIKE '%{$_POST['mesa']}%'";
-            $query3="SELECT sala.nombre, mesa.numero_mesa, COUNT(numero_mesa) as veces_mesa FROM historico INNER JOIN mesa ON historico.id_mesa = mesa.id_mesa INNER JOIN sala ON mesa.id_sala = sala.id_sala WHERE sala.nombre LIKE '%{$_POST['sala']}%' AND mesa.numero_mesa LIKE '%{$_POST['mesa']}%' GROUP BY sala.nombre";
+            $query3="SELECT sala.nombre, mesa.numero_mesa, COUNT(numero_mesa) as veces_mesa FROM historico INNER JOIN mesa ON historico.id_mesa = mesa.id_mesa INNER JOIN sala ON mesa.id_sala = sala.id_sala WHERE sala.nombre LIKE '%{$_POST['sala']}%' AND mesa.numero_mesa LIKE '%{$_POST['mesa']}%' GROUP BY sala.nombre, mesa.numero_mesa";
             $sentencia3=$pdo->prepare($query3);
             $sentencia3->execute();
             $num_reservas=$sentencia3->fetchAll(PDO::FETCH_ASSOC);
-            print_r($num_reservas);
+            $numRow=$sentencia3->rowCount();
           }else {
             $query="SELECT sala.nombre, mesa.numero_mesa, historico.fecha_inicio, historico.fecha_fin FROM historico INNER JOIN mesa ON historico.id_mesa = mesa.id_mesa INNER JOIN sala ON mesa.id_sala = sala.id_sala";
           }
@@ -21,6 +26,7 @@ class HistoricoDAO{
           $sentencia=$pdo->prepare($query);
           $sentencia->execute();
           $lista_historico=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+          $numRow=$sentencia->rowCount();
           ?>
           
           <form method="POST">
@@ -54,6 +60,7 @@ class HistoricoDAO{
                       <tbody>
                         <tr>
                 <?php
+                  if($numRow!=0) {
                     foreach($num_reservas as $num_reserva) {
                 ?>
                   <td><?php echo "{$num_reserva['nombre']}"; ?></td>
@@ -61,6 +68,9 @@ class HistoricoDAO{
                   <td><?php echo "{$num_reserva['veces_mesa']}"; ?></td>
                 </tr>
                 <?php
+                    }
+                  }else {
+                    echo "<td>0 resultados</td>";
                   }
                 }
                 ?>
@@ -77,7 +87,8 @@ class HistoricoDAO{
               </thead>
               <tbody>
           <?php
-          foreach($lista_historico as $historico) {
+          if($numRow!=0) {
+            foreach($lista_historico as $historico) {
             ?>
           
             <tr>
@@ -88,7 +99,9 @@ class HistoricoDAO{
             </tr>
           
           <?php
-              
+            } 
+          }else {
+            echo "<td>0 resultados</td>";
           }
           
           ?>
