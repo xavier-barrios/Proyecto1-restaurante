@@ -3,8 +3,8 @@
 @par: white;
 @header: #555;
 @cabecera: orange;
-@sala: rgb(255, 187, 0);
-@hover-sala: red;
+@sala: #28d;
+@hover-sala: black;
 @libre:rgb(3, 153, 3);
 @ocupada:red;
 @corporate-bg:#28d;
@@ -209,4 +209,40 @@ header {
 
 .ocupada {
   color: @ocupada;
+}
+
+
+////////// HISTORICO //////////
+.historico {
+  font-size: 1.6rem;
+  .historico-filtro {
+    width: max-content;
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 0.8rem;
+    background-color: #f4f4f4;
+    margin-bottom: 4rem;
+    input {
+      border: none;
+      border-radius: 0.5rem;
+      padding: 0.3rem;
+      margin-left: 1rem;
+      border: 1px solid #dadada;
+    }
+    input[type=submit] {
+      background-color: @corporate-bg;
+      color: @corporate-fg;
+      margin-left: 0;
+      padding: 0.8rem 2rem;
+      display: inline-block;
+      width: 100%;
+    }
+  }
+  .indicaciones {
+    font-size: 1.2rem;
+    color: #636363;
+    span {
+      // font-weight: 700;
+    }
+  }
 }

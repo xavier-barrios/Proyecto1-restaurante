@@ -30,7 +30,7 @@ class HistoricoDAO{
           ?>
           
           <!DOCTYPE html>
-          <html lang="en">
+          <html lang="es">
           <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,15 +39,18 @@ class HistoricoDAO{
             <link rel="stylesheet" href="../css/style.css">
             <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
           </head>
-          <body>
+          <body class="historico">
                 <?php
                   require_once 'header.html';
                 ?>
                 <form method="POST">
-                  <h1>FILTRAR</h1>
-                  <p>Sala: <input type="text" name="sala" size="40"></p>
-                  <p>Mesa: <input type="number" name="mesa" min="1" max="5"></p>
-                  <input type="submit" value="Filtrar" name="filtro">
+                  <h1>HISTÓRICO</h1>
+                  <div class="historico-filtro">
+                    <p>Sala: <input type="text" name="sala" size="40" placeholder="Escribe la sala..."></p>
+                    <p>Mesa: <input type="number" name="mesa" min="1" max="5"></p>
+                    <input type="submit" value="Filtrar" name="filtro">
+                    <p class="indicaciones">Para ver el resumen completo pulse el botón </span>Filtrar</span> con los campos vacíos</p>
+                  </div>
                 </form>
                 <?php
                 
