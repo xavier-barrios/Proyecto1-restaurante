@@ -12,6 +12,8 @@ class MesaDAO{
 
     public function mostrarMesas(){
         require_once '../model/connection.php';
+        // recogemos el id y el nombre de la sala 
+        // el id lo recogemos para la consulta y el nombre porque se volvera a enniar para ser mostrado
         $id_sala = $_GET['id_sala'];
         $nombre = $_GET['nombre'];
 
@@ -21,6 +23,7 @@ class MesaDAO{
         $salas=$sentencia->fetchAll(PDO::FETCH_ASSOC);
 
         function estado($salas) {
+            // si el campo 
             if($salas['id_usuario'] == NULL) {
                 return 'Libre';
             } else {

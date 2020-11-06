@@ -5,6 +5,8 @@ require_once '../controller/sessionController.php';
 // if (!isset($_SESSION['user'])) {
 //     header('Location:../view/login.php');
 // }
+// recogemos el id del usuario que ha inciado secion
+// recogemos el id de la mesa y la variable actualizar (Ocupar o Liberar) junto a nombre de la salañ, 
 $id_usuario=$_SESSION['user']->getId_usuario();
 $id_mesa = $_GET['id'];
 $actualizar = $_GET['act'];

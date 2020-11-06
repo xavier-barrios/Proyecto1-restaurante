@@ -34,6 +34,7 @@ class SalaDAO{
             $sentencia3->execute();
             $mesas1=$sentencia3->fetchAll(PDO::FETCH_ASSOC);
 
+            // en el href enviara el id de la sala y el nombre para ser recogidos en la siguiente pagina
             echo "<td><a href='./admin_2.php?id_sala={$id}&nombre={$nombre}'>".$nombre."</td>";
                 foreach ($mesas as $mesa) {
                     $ocupada = $mesa['Ocupada'];
