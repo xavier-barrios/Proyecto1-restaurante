@@ -21,6 +21,7 @@
         require_once '../model/mesaDAO.php';
         require_once 'header.html';
         require_once '../controller/sessionController.php';
+        // recogemos el nombre de la sala para mostrarlo
         $nombre = $_GET['nombre'];
     ?>
     <main class="main--admin container">
