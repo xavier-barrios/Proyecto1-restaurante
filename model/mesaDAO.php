@@ -58,14 +58,14 @@ class MesaDAO{
         $id_sala = $_GET['id_sala'];
         $nombre = $_GET['nombre'];
 
-        $query = "SELECT * FROM mesa WHERE id_sala = $id_sala";
+        $query = "SELECT mesa.id_mesa, numero_mesa, incidencias.id_mesa AS incidencia FROM `mesa` LEFT JOIN `incidencias` ON mesa.id_mesa = incidencias.id_mesa WHERE mesa.id_sala = $id_sala";
         $sentencia=$pdo->prepare($query);
         $sentencia->execute();
         $salas=$sentencia->fetchAll(PDO::FETCH_ASSOC);
 
         function estadoAdmin($salas) {
             // si el campo 
-            if($salas['id_usuario'] == NULL) {
+            if($salas['incidencia'] == NULL) {
                 return '<label class="libre">Desbloqueada</label>';
             } else {
                 return '<label class="ocupada">Bloqueada</label>';
@@ -73,7 +73,7 @@ class MesaDAO{
         }
         
         function actualizarAdmin($salas) {
-            if($salas['id_usuario'] == NULL) {
+            if($salas['incidencia'] == NULL) {
                 return 'Bloquear';
             } else {
                 return 'Desbloquear';

@@ -24,7 +24,8 @@ $sentencia2=$pdo->prepare($query2);
 $sentencia2->execute();
 $mesa=$sentencia2->fetch(PDO::FETCH_ASSOC);
 print_r($mesa);
-
+$id_sala=$mesa['id_sala'];
+$id_mesa=$mesa['id_mesa'];
 if($actualizar == 'Bloquear') {
     // Está ocupada (cuando le demos a liberar, tiene que guardarse en histórico)
     try {
@@ -37,10 +38,10 @@ if($actualizar == 'Bloquear') {
         // tabla historico
         // $query="INSERT INTO historico (id_historico, id_mesa, id_sala, sillas_mesa, fecha_inicio, fecha_fin, id_usuario VALUES (NULL,?,?,?,?,NOW(),?);";
         // $query="INSERT INTO `historico` (`id_historico`, `id_mesa`, `id_sala`, `sillas_mesa`, `fecha_inicio`, `fecha_fin`, `id_usuario`) VALUES (NULL, '1', '2', '6', '2020-11-02 16:27:37', current_timestamp(), '1');";
-        $query="INSERT INTO `incidencias` (`id_incidencia`, `id_usuario`, `id_sala`, `id_mesa`) VALUES (NULL, ?, ?, ?, ?);";
+        $query="INSERT INTO `incidencias` (`id_usuario`, `id_sala`, `id_mesa`) VALUES (?, ?, ?);";
         $query=$pdo->prepare($query);
-        $id_mesa=$mesa['id_mesa'];
-        $id_sala=$mesa['id_sala'];
+        
+        
         // $sillas_mesa=$mesa['sillas_mesa'];
         // $fecha_inicio=$mesa['fecha_inicio'];
         // $id_usuario=$mesa['id_usuario'];
@@ -60,7 +61,7 @@ if($actualizar == 'Bloquear') {
         // $sentencia1=$pdo->prepare($query1);
         // $sentencia1->bindParam(1,$id_usuario);
         // $sentencia1->execute();
-        // $pdo->commit();
+        $pdo->commit();
         header("Location:../view/adminMantenimiento2.php?id_sala={$id_sala}&nombre={$nombre}");
     } catch (Exception $ex) {
         $pdo->rollback();
