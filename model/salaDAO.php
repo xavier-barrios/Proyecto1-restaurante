@@ -1,11 +1,4 @@
 <?php
-
-// require_once 'sala.php';
-// require_once '../model/connection.php';
-// require_once 'user.php';
-// if (!isset($_SESSION['user'])) {
-//     header('Location:../view/login.php');
-// }
 class SalaDAO{
 
     public function __construct(){
@@ -13,7 +6,7 @@ class SalaDAO{
     
     public function mostrarSalasMesas(){
         include '../model/connection.php';
-        // cosnulta que mostrara todas las salas
+        // consulta que mostrara todas las salas
         $query = "SELECT * FROM sala";
         $sentencia=$pdo->prepare($query);
         $sentencia->execute();
@@ -36,12 +29,12 @@ class SalaDAO{
             $mesas1=$sentencia3->fetchAll(PDO::FETCH_ASSOC);
 
             echo "<td><a href='./admin_2.php?id_sala={$id}&nombre={$nombre}'>".$nombre."</td>";
-
+                // bucle para mostrar todas las mesas que se encuentran ocupadas, recogiendo el campo de la query que contiene el Count.
                foreach ($mesas as $mesa) {
                     $ocupada = $mesa['Ocupada'];
                     echo "<td style='text-align: center;'>".$ocupada."</td>";
                 }
-
+                // bucle para mostrar todas las mesas que se encuentran libres, recogiendo el campo de la query que contiene el Count.
                 foreach ($mesas1 as $mesa1) {
                     $libre = $mesa1['Libre'];
                     echo "<td style='text-align: center;'>".$libre."</td>";
@@ -53,7 +46,7 @@ class SalaDAO{
 
     public function mostrarSalasMesasMan(){
         include '../model/connection.php';
-        // cosnulta que mostrara todas las salas
+        // consulta que mostrará todas las salas
         $query = "SELECT * FROM sala";
         $sentencia=$pdo->prepare($query);
         $sentencia->execute();

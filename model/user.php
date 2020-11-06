@@ -1,15 +1,11 @@
 <?php
-// require_once '../model/connection.php';
-// require_once 'user.php';
-// if (!isset($_SESSION['user'])) {
-//     header('Location:../view/login.php');
-// }
+// Creamos la clase Usuario que contiene todos los atributos de la base de datos
     class Usuario{
         private $id_usuario;
         private $email;
         private $password;
         private $puesto_trabajo;
-
+        // Al constructor le pasamos todos los parametros, ya que vamos a necesitar todos los datos al hacer el login
         function __construct($id_usuario, $email, $password, $puesto_trabajo){
             $this->id_usuario=$id_usuario;
             $this->email=$email;

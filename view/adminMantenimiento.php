@@ -12,6 +12,7 @@
     ?>
 
     <div>
+        <!--Creamos la tabla para las incidencias en la que se van a mostrar las salas, mesas ocupadas y mesas libres -->
         <h2>Incidencias</h2>
         <table>
             <thead>
@@ -22,6 +23,7 @@
             </tr>
             </thead>
             <?php
+            // Llamamos a la funcion que se encuentra en SalaDAO, lo que hará que se muestren los datos de la sala.
                 $sala =  new SalaDAO();
                 echo $sala->mostrarSalasMesasMan();
             
