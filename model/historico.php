@@ -1,9 +1,5 @@
 <?php
-// require_once '../model/connection.php';
-// require_once 'user.php';
-// if (!isset($_SESSION['user'])) {
-//     header('Location:../view/login.php');
-// }
+// Creamos la clase Reserva que contiene todos los atributos de la base de datos
 class Reserva {
     private $id_historico;
     private $fecha_ini;

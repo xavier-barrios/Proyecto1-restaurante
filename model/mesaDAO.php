@@ -1,11 +1,4 @@
 <?php
-
-// require_once 'mesa.php';
-// require_once '../model/connection.php';
-// require_once 'user.php';
-// if (!isset($_SESSION['user'])) {
-//     header('Location:../view/login.php');
-// }
 class MesaDAO{
 
     public function __construct(){
@@ -18,29 +11,24 @@ class MesaDAO{
         $id_sala = $_GET['id_sala'];
         $nombre = $_GET['nombre'];
 
+
         // Mesas sin incidencias
         $query = "SELECT * FROM mesa WHERE mesa.id_sala = $id_sala AND mesa.id_mesa NOT IN (SELECT incidencias.id_mesa FROM incidencias)";
+
         $sentencia=$pdo->prepare($query);
         $sentencia->execute();
         $salas=$sentencia->fetchAll(PDO::FETCH_ASSOC);
-
-        // $query = "SELECT * FROM mesa WHERE id_sala = $id_sala";
-        // // $query = "SELECT mesa.id_usuario, mesa.id_mesa, mesa.numero_mesa, mesa.sillas_mesa FROM mesa INNER JOIN incidencias ON mesa.id_mesa = incidencias.id_mesa WHERE mesa.id_sala = $id_sala";
-        // $sentencia=$pdo->prepare($query);
-        // $sentencia->execute();
-        // $salas=$sentencia->fetchAll(PDO::FETCH_ASSOC);
 
         // mesas con incidencias
         $query3 = "SELECT  mesa.id_usuario, mesa.id_mesa, mesa.numero_mesa, mesa.sillas_mesa FROM mesa INNER JOIN incidencias ON mesa.id_mesa = incidencias.id_mesa WHERE mesa.id_sala = $id_sala";
         $sentencia3=$pdo->prepare($query3);
         $sentencia3->execute();
         $mesas_incidencias=$sentencia3->fetchAll(PDO::FETCH_ASSOC);
-
-
         
         function mesas_incidencia_estado($mesas_incidencias) {
             return '<label class="incid">Incidencia</label>';
         }
+      
         foreach($mesas_incidencias as $mesas_incidencia) {
             echo "<tr>";
             echo "<td>{$mesas_incidencia['numero_mesa']}</td>";
@@ -48,25 +36,30 @@ class MesaDAO{
             echo "<td>".mesas_incidencia_estado($mesas_incidencia)."</td>";
             echo "</tr>";
         }
+      
+        // Si el id_usuario es NULL (es decir, que la mesa esta libre y no tiene ninguna reserva de ningun camarero) entonces mostramos que la mesa esta libre.
 
-        // FIN OJO
         function estado($salas) {
             // si el campo 
             if($salas['id_usuario'] == NULL) {
                 return '<label class="libre">Libre</label>';
+                // Si no, mostramos con un label que la mesa esta ocupada.
             } else {
                 return '<label class="ocupada">Ocupada</label>';
             }
         }
         
         function actualizar($salas) {
+            // Si el id del usuario esta en NULL, entonces añadimos el boton de ocupar.
             if($salas['id_usuario'] == NULL) {
                 return 'Ocupar';
+                // Si no, mostramos el botón de Liberar, lo que indica que esa mesa estaria ocupada por un id_usuario.
             } else {
                 return 'Liberar';
             }
         }
         foreach($salas as $sala) {
+            // Volvemos a recoger el id de la mesa para poder mostrar los datos por pantalla en formato tabla.
             $id = $sala['id_mesa'];
             $actualizar = actualizar($sala);
             echo "<tr>";

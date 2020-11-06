@@ -1,17 +1,13 @@
 <?php
 require_once 'historico.php';
-// require_once '../model/connection.php';
-// require_once 'user.php';
-// if (!isset($_SESSION['user'])) {
-//     header('Location:../view/login.php');
-// }
 class HistoricoDAO{
 
     public function __construct(){
     }
-    
+    // En la funcion filtrarHistorico ejecutaremos todas las consultas para filtrar por nombre de la sala y mesa el historico.
     public function filtrarHistorico(){
         require_once '../model/connection.php';
+        // Si el campo sala o mesa estan seteados (con datos introducidos), ejecutaremos la query del filtro.
         if (isset($_POST['sala']) || isset($_POST['mesa'])){
             $query="SELECT sala.nombre, mesa.numero_mesa, historico.fecha_inicio, historico.fecha_fin FROM historico INNER JOIN mesa ON historico.id_mesa = mesa.id_mesa INNER JOIN sala ON mesa.id_sala = sala.id_sala WHERE sala.nombre LIKE '%{$_POST['sala']}%' AND mesa.numero_mesa LIKE '%{$_POST['mesa']}%'";
             $query3="SELECT sala.nombre, mesa.numero_mesa, COUNT(numero_mesa) as veces_mesa FROM historico INNER JOIN mesa ON historico.id_mesa = mesa.id_mesa INNER JOIN sala ON mesa.id_sala = sala.id_sala WHERE sala.nombre LIKE '%{$_POST['sala']}%' AND mesa.numero_mesa LIKE '%{$_POST['mesa']}%' GROUP BY sala.nombre, mesa.numero_mesa";
@@ -19,16 +15,16 @@ class HistoricoDAO{
             $sentencia3->execute();
             $num_reservas=$sentencia3->fetchAll(PDO::FETCH_ASSOC);
             $numRow=$sentencia3->rowCount();
+            // Si únicamente clickamos en filtrar sin introducir ningun valor en el formulario de filtro, entonces nos mostrará todos los historicos que existen.
           }else {
             $query="SELECT sala.nombre, mesa.numero_mesa, historico.fecha_inicio, historico.fecha_fin FROM historico INNER JOIN mesa ON historico.id_mesa = mesa.id_mesa INNER JOIN sala ON mesa.id_sala = sala.id_sala";
           }
-          
           $sentencia=$pdo->prepare($query);
           $sentencia->execute();
           $lista_historico=$sentencia->fetchAll(PDO::FETCH_ASSOC);
           $numRow=$sentencia->rowCount();
           ?>
-          
+          <!--Creamos el formulario del filtro -->
           <!DOCTYPE html>
           <html lang="es">
           <head>
@@ -44,6 +40,7 @@ class HistoricoDAO{
                   require_once 'header.html';
                 ?>
                 <form method="POST">
+                  <!--Añadimos dos inputs, el de la sala y el de la mesa -->
                   <h1>HISTÓRICO</h1>
                   <div class="historico-filtro">
                     <p>Sala: <input type="text" name="sala" size="40" placeholder="Escribe la sala..."></p>
@@ -53,7 +50,7 @@ class HistoricoDAO{
                   </div>
                 </form>
                 <?php
-                
+                  // Cuando clickemos en submit (que tiene como nombre filtro), mostraremos los datos en formato tabla.
                   if(isset($_POST['filtro'])) {
                 ?>
                 
@@ -72,6 +69,7 @@ class HistoricoDAO{
                         <tbody>
                           <tr>
                   <?php
+                  // Nos muestra los tres campos especificados en el echo, que estan almacenados en la variable $num_reserva
                     if($numRow!=0) {
                       foreach($num_reservas as $num_reserva) {
                   ?>
@@ -120,7 +118,8 @@ class HistoricoDAO{
                       </tr>
                     
                     <?php
-                      } 
+                      }
+                      // Si el foreach no devuelve ningun valor, es que la query no tiene resultados, por lo que mostramos un mensaje por pantalla.
                     }else {
                       echo "<td>0 resultados</td>";
                     }
