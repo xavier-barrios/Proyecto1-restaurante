@@ -11,7 +11,7 @@
 <body>
      <?php
         require_once '../model/salaDAO.php';
-        require_once 'header.html';
+        require_once 'header2.html';
         require_once '../controller/sessionController.php';
     ?>
     <main class="main--admin container">
@@ -22,8 +22,8 @@
                     <thead>
                     <tr>
                         <th>Salas</th>
-                        <th>Mesas Ocupadas</th>
-                        <th>Mesas Libres</th>
+                        <!-- <th>Mesas Ocupadas</th>
+                        <th>Mesas Libres</th> -->
                     </tr>
                     </thead>
                     <?php

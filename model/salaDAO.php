@@ -78,16 +78,16 @@ class SalaDAO{
 
             echo "<td><a href='./adminMantenimiento2.php?id_sala={$id}&nombre={$nombre}'>".$nombre."</td>";
 
-            foreach ($mesas as $mesa) {
-                $ocupada = $mesa['Ocupada'];
-                echo "<td style='text-align: center;'>".$ocupada."</td>";
-            }
+            // foreach ($mesas as $mesa) {
+            //     $ocupada = $mesa['Ocupada'];
+            //     echo "<td style='text-align: center;'>".$ocupada."</td>";
+            // }
 
-            foreach ($mesas1 as $mesa1) {
-                $libre = $mesa1['Libre'];
-                echo "<td style='text-align: center;'>".$libre."</td>";
-                echo "</tr>";
-            }
+            // foreach ($mesas1 as $mesa1) {
+            //     $libre = $mesa1['Libre'];
+            //     echo "<td style='text-align: center;'>".$libre."</td>";
+            //     echo "</tr>";
+            // }
         }
     }
 }

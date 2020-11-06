@@ -11,25 +11,26 @@
 <body>
     <?php
         require_once '../model/mesaDAO.php';
-        require_once 'header.html';
+        require_once 'header2.html';
         require_once '../controller/sessionController.php';
+        $nombre = $_GET['nombre'];
     ?>
     <main class="main--admin container"> 
     <div class="container-admin">
-        <h2>Admin2</h2>
+        <h2><?php echo $nombre;?></h2>
         <div class="admin--table"> 
         <table>
             <thead>
                 <tr>
                     <th>Mesa</th>
-                    <th>Sillas</th>
+                    <!-- <th>Sillas</th> -->
                     <th colspan='2'>Estado</th>
                 </tr>
             </thead>
             <tbody>
             <?php
                 $sala =  new MesaDAO();
-                echo $sala->mostrarMesas();
+                echo $sala->mostrarMesasAdmin();
                 ?>
                 <form action=""></form>
             </tbody>
