@@ -15,6 +15,7 @@
         require_once '../controller/sessionController.php';
         $nombre = $_GET['nombre'];
     ?>
+  <!--Creamos la tabla para las incidencias en la que se van a mostrar las mesas, sillas y el estado -->
     <main class="main--admin container"> 
     <div class="container-admin">
         <h2><?php echo $nombre;?></h2>
@@ -29,6 +30,7 @@
             </thead>
             <tbody>
             <?php
+              // Llamamos a la funcion que se encuentra en MesaDAO, lo que hará que se muestren los datos de la mesa.
                 $sala =  new MesaDAO();
                 echo $sala->mostrarMesasAdmin();
                 ?>

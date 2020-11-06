@@ -1,10 +1,3 @@
-<?php
-// require_once '../model/user.php';
-// require_once '../model/connection.php';
-// if (!isset($_SESSION['user'])) {
-//     header('Location:login.php');
-// }
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -24,6 +17,7 @@
         // recogemos el nombre de la sala para mostrarlo
         $nombre = $_GET['nombre'];
     ?>
+    <!--Creamos la tabla en la que se van a mostrar las mesas, las sillas y el estado -->
     <main class="main--admin container">
         <div class="container-admin">
             <h2><?php echo $nombre;?></h2>
@@ -38,6 +32,7 @@
                     </thead>
                     <tbody>
                     <?php
+                    // Llamamos a la funcion que se encuentra en MesaDAO, lo que hará que se muestren los datos de la mesa.
                         $sala =  new MesaDAO();
                         echo $sala->mostrarMesas();
                         ?>
@@ -45,9 +40,6 @@
                     </tbody>
                 </table>
             </div>
-            <!-- <div class="volver">
-                <a href="./admin_1.php">Volver</a>
-            </div> -->
         </div>
     </main>    
 

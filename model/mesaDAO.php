@@ -1,11 +1,4 @@
 <?php
-
-// require_once 'mesa.php';
-// require_once '../model/connection.php';
-// require_once 'user.php';
-// if (!isset($_SESSION['user'])) {
-//     header('Location:../view/login.php');
-// }
 class MesaDAO{
 
     public function __construct(){
@@ -18,28 +11,34 @@ class MesaDAO{
         $id_sala = $_GET['id_sala'];
         $nombre = $_GET['nombre'];
 
+        // Ejecutamos la query que nos va a mostrar todas las mesas del id_sala que le recogamos mediante el GET
         $query = "SELECT * FROM mesa WHERE id_sala = $id_sala";
         $sentencia=$pdo->prepare($query);
         $sentencia->execute();
         $salas=$sentencia->fetchAll(PDO::FETCH_ASSOC);
 
+        // Si el id_usuario es NULL (es decir, que la mesa esta libre y no tiene ninguna reserva de ningun camarero) entonces mostramos que la mesa esta libre.
         function estado($salas) {
             // si el campo 
             if($salas['id_usuario'] == NULL) {
                 return '<label class="libre">Libre</label>';
+                // Si no, mostramos con un label que la mesa esta ocupada.
             } else {
                 return '<label class="ocupada">Ocupada</label>';
             }
         }
         
         function actualizar($salas) {
+            // Si el id del usuario esta en NULL, entonces añadimos el boton de ocupar.
             if($salas['id_usuario'] == NULL) {
                 return 'Ocupar';
+                // Si no, mostramos el botón de Liberar, lo que indica que esa mesa estaria ocupada por un id_usuario.
             } else {
                 return 'Liberar';
             }
         }
         foreach($salas as $sala) {
+            // Volvemos a recoger el id de la mesa para poder mostrar los datos por pantalla en formato tabla.
             $id = $sala['id_mesa'];
             $actualizar = actualizar($sala);
             echo "<tr>";
