@@ -29,85 +29,109 @@ class HistoricoDAO{
           $numRow=$sentencia->rowCount();
           ?>
           
-          <form method="POST">
-            <h1>FILTRAR</h1>
-            <p>Sala: <input type="text" name="sala" size="40"></p>
-            <p>Mesa: <input type="number" name="mesa" min="1" max="5"></p>
-            
-            <input type="submit" value="Filtrar" name="filtro">
-          </form>
-          
           <!DOCTYPE html>
-          <html lang="en">
+          <html lang="es">
           <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Estadísticas</title>
+            <link rel="stylesheet" href="../css/normalize.css">
+            <link rel="stylesheet" href="../css/style.css">
+            <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
           </head>
-          <body>
+          <body class="historico">
                 <?php
+                  require_once 'header.html';
+                ?>
+                <form method="POST">
+                  <h1>HISTÓRICO</h1>
+                  <div class="historico-filtro">
+                    <p>Sala: <input type="text" name="sala" size="40" placeholder="Escribe la sala..."></p>
+                    <p>Mesa: <input type="number" name="mesa" min="1" max="5"></p>
+                    <input type="submit" value="Filtrar" name="filtro">
+                    <p class="indicaciones">Para ver el resumen completo pulse el botón </span>Filtrar</span> con los campos vacíos</p>
+                  </div>
+                </form>
+                <?php
+                
                   if(isset($_POST['filtro'])) {
                 ?>
+                
+                <main class="main--admin container">
+                  <div class="container-admin">
                     <h2>Resumen</h2>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Nombre sala</th>
-                          <th>Mesa</th>
-                          <th>Nº de veces reservada</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                <?php
-                  if($numRow!=0) {
-                    foreach($num_reservas as $num_reserva) {
-                ?>
-                  <td><?php echo "{$num_reserva['nombre']}"; ?></td>
-                  <td><?php echo "{$num_reserva['numero_mesa']}"; ?></td>
-                  <td><?php echo "{$num_reserva['veces_mesa']}"; ?></td>
-                </tr>
-                <?php
+                    <div class="admin--table">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Nombre sala</th>
+                            <th>Mesa</th>
+                            <th>Nº de veces reservada</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                  <?php
+                    if($numRow!=0) {
+                      foreach($num_reservas as $num_reserva) {
+                  ?>
+                    <td><?php echo "{$num_reserva['nombre']}"; ?></td>
+                    <td><?php echo "{$num_reserva['numero_mesa']}"; ?></td>
+                    <td><?php echo "{$num_reserva['veces_mesa']}"; ?></td>
+                  </tr>
+                  <?php
+                      }
+                    }else {
+                      echo "<td>0 resultados</td>";
                     }
-                  }else {
-                    echo "<td>0 resultados</td>";
                   }
-                }
-                ?>
-              </tbody>
-            </table>
-            <table>
-              <thead>
-                <tr>
-                  <th>Sala</th>
-                  <th>Mesa</th>
-                  <th>Fecha Inicio</th>
-                  <th>Fecha Fin</th>
-                </tr>
-              </thead>
-              <tbody>
-          <?php
-          if($numRow!=0) {
-            foreach($lista_historico as $historico) {
-            ?>
-          
-            <tr>
-              <td><?php echo "{$historico['nombre']}";?></td>
-              <td><?php echo "{$historico['numero_mesa']}"; ?></td>
-              <td><?php echo "{$historico['fecha_inicio']} "; ?></td>
-              <td><?php echo "{$historico['fecha_fin']} "; ?></td>
-            </tr>
-          
-          <?php
-            } 
-          }else {
-            echo "<td>0 resultados</td>";
-          }
-          
-          ?>
-          
-            </tbody>
-          </table>
+                  ?>
+                </tbody>    
+              </table>
+                  </div>
+                  </div>
+                </main>
+
+
+                <main class="main--admin container">  
+                  <div class="container-admin">
+                    <h2>Total</h2>
+                    <div class="admin--table">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Sala</th>
+                            <th>Mesa</th>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Fin</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                    <?php
+                    if($numRow!=0) {
+                      foreach($lista_historico as $historico) {
+                      ?>
+                    
+                      <tr>
+                        <td><?php echo "{$historico['nombre']}";?></td>
+                        <td><?php echo "{$historico['numero_mesa']}"; ?></td>
+                        <td><?php echo "{$historico['fecha_inicio']} "; ?></td>
+                        <td><?php echo "{$historico['fecha_fin']} "; ?></td>
+                      </tr>
+                    
+                    <?php
+                      } 
+                    }else {
+                      echo "<td>0 resultados</td>";
+                    }
+                    
+                    ?>
+                    
+                      </tbody>
+                    </table>
+                    </div>
+                  </div>
+                </main>    
           </body>
           </html>
           <?php

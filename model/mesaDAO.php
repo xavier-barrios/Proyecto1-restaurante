@@ -1,4 +1,5 @@
 <?php
+
 // require_once 'mesa.php';
 // require_once '../model/connection.php';
 // require_once 'user.php';
@@ -25,9 +26,9 @@ class MesaDAO{
         function estado($salas) {
             // si el campo 
             if($salas['id_usuario'] == NULL) {
-                return 'Libre';
+                return '<label class="libre">Libre</label>';
             } else {
-                return 'Ocupada';
+                return '<label class="ocupada">Ocupada</label>';
             }
         }
         
