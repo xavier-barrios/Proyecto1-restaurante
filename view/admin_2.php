@@ -14,6 +14,7 @@
         require_once '../model/mesaDAO.php';
         require_once 'header.html';
         require_once '../controller/sessionController.php';
+        // recogemos el nombre de la sala para mostrarlo
         $nombre = $_GET['nombre'];
     ?>
     <!--Creamos la tabla en la que se van a mostrar las mesas, las sillas y el estado -->

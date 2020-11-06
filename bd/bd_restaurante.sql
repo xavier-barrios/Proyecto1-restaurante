@@ -48,7 +48,6 @@ CREATE TABLE `historico` (
 
 CREATE TABLE `incidencias` (
   `id_incidencia` int(11) NOT NULL,
-  `descripcion` varchar(255) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `id_sala` int(11) NOT NULL,
   `id_mesa` int(11) NOT NULL
@@ -105,7 +104,7 @@ CREATE TABLE `sala` (
 --
 
 INSERT INTO `sala` (`id_sala`, `nombre`, `capacidad`, `mesas`) VALUES
-(1, 'comerdor_1', 20, 3),
+(1, 'comedor_1', 20, 3),
 (2, 'comedor_2', 30, 2),
 (3, 'terraza', 25, 4),
 (4, 'exclusiva', 10, 3);

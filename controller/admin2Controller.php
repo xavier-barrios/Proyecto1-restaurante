@@ -2,7 +2,8 @@
 /* Hacemos un require_once del archivo de conexion a la base de datos y del sessionController para seguir manteniendo la sesion iniciada*/
 require_once '../model/connection.php';
 require_once '../controller/sessionController.php';
-
+// recogemos el id del usuario que ha inciado secion
+// recogemos el id de la mesa y la variable actualizar (Ocupar o Liberar) junto a nombre de la sala, 
 // Recogemos el id del usuario con el get y el resto de los campos //
 $id_usuario=$_SESSION['user']->getId_usuario();
 $id_mesa = $_GET['id'];
