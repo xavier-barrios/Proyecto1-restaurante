@@ -60,10 +60,8 @@ if($actualizar == 'Liberar') {
     header("Location:../view/admin_2.php?id_sala={$id_sala}&nombre={$nombre}");
 }else {
     // Está libre (hay que actualizar la tabla mesa con la fecha actual y el id del camarero)
-    // OJO (viene por la sesión)
     $id_sala=$mesa['id_sala'];
     $nombre = $_GET['nombre'];
-    // FIN OJO
     // tabla mesa
     $query = "UPDATE mesa SET fecha_inicio=NOW(), id_usuario=? WHERE id_mesa = $id_mesa";
     $sentencia=$pdo->prepare($query);
