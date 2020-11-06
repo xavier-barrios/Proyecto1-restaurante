@@ -1,9 +1,5 @@
 <?php
-// require_once '../model/connection.php';
-// require_once 'user.php';
-// if (!isset($_SESSION['user'])) {
-//     header('Location:../view/login.php');
-// }
+
     class Usuario{
         private $id_usuario;
         private $email;

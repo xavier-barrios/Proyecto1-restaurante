@@ -1,11 +1,6 @@
 <?php
 require_once '../model/connection.php';
-
 require_once '../controller/sessionController.php';
-// require_once '../model/user.php';
-// if (!isset($_SESSION['user'])) {
-//     header('Location:../view/login.php');
-// }
 
 $id_usuario=$_SESSION['user']->getId_usuario();
 

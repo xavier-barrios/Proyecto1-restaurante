@@ -1,9 +1,6 @@
 <?php
 require_once 'user.php';
-// require_once '../model/connection.php';
-// if (!isset($_SESSION['user'])) {
-//     header('Location:../view/login.php');
-// }
+
 class UserDao{
     private $pdo;
 
@@ -28,7 +25,10 @@ class UserDao{
             $user->setPuesto_trabajo($result['puesto_trabajo']);
             // Creamos la sesión //
             session_start();
-            $_SESSION['user']=$user;
+            $_SESSION['user'] = $user;
+            // OJO
+            // error_log('User set on session');
+            // FIN OJO
             return true;
         }else {
             return false;

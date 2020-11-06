@@ -1,5 +1,5 @@
 <?php
-include 'config.php';
+require_once 'config.php';
 // Connectar-nos a la BBDD
 try {
     $dsn = "mysql:host=".SERVIDOR.";dbname=".BD;

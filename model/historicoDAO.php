@@ -1,10 +1,6 @@
 <?php
 require_once 'historico.php';
-// require_once '../model/connection.php';
-// require_once 'user.php';
-// if (!isset($_SESSION['user'])) {
-//     header('Location:../view/login.php');
-// }
+
 class HistoricoDAO{
 
     public function __construct(){
@@ -42,6 +38,9 @@ class HistoricoDAO{
           <body class="historico">
                 <?php
                   require_once 'header.html';
+                  // OJO
+                  require_once '../controller/sessionController.php';
+                  // FIN OJO
                 ?>
                 <form method="POST">
                   <h1>HISTÓRICO</h1>

@@ -1,10 +1,8 @@
 
 <?php
-// require_once '../model/user.php';
-// require_once '../model/connection.php';
-// if (!isset($_SESSION['user'])) {
-//     header('Location:login.php');
-// }
+require_once '../model/connection.php';
+require_once '../model/user.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
