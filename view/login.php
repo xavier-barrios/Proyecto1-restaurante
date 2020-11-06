@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="../css/style.css">
-<script src="../js/code.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <script src="../js/code.js"></script>
 </head>
-  <body class="fondo_login">
+<body class="fondo_login">
   <div class="login">
   <div class="login-triangle"></div>
   <h2 class="login-header">Iniciar Sesion</h2>
@@ -20,5 +20,5 @@
     </div>  
       <?php
     ?>
-  </body>
+</body>
 </html>
