@@ -25,6 +25,7 @@ class UserDao{
         if(!empty($numRow) && $numRow==1){
             $user->setEmail($result['email']);
             $user->setId_usuario($result['id_usuario']);
+            $user->setPuesto_trabajo($result['puesto_trabajo']);
             // Creamos la sesión //
             session_start();
             $_SESSION['user']=$user;
