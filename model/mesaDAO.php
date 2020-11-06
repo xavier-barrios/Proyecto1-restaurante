@@ -19,7 +19,7 @@ class MesaDAO{
         $nombre = $_GET['nombre'];
 
         // Mesas sin incidencias
-        $query = "SELECT * FROM mesa WHERE mesa.id_sala = 1 AND mesa.id_mesa NOT IN (SELECT incidencias.id_mesa FROM incidencias)";
+        $query = "SELECT * FROM mesa WHERE mesa.id_sala = $id_sala AND mesa.id_mesa NOT IN (SELECT incidencias.id_mesa FROM incidencias)";
         $sentencia=$pdo->prepare($query);
         $sentencia->execute();
         $salas=$sentencia->fetchAll(PDO::FETCH_ASSOC);
